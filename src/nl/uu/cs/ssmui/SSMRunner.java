@@ -630,6 +630,7 @@ public class SSMRunner extends JFrame
 	        stepManager.backStep() ;
 	    else
 	    	stopContinuouslyDoingSteps() ;
+		this.repaint() ;
 	}
 	
 	protected void doAStepForward()
@@ -648,6 +649,7 @@ public class SSMRunner extends JFrame
             }
         }
         stepManager.endForwardStep() ;
+        this.repaint() ;
 	}
 
 	public void println( String s )
