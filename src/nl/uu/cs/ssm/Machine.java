@@ -479,7 +479,7 @@ public class Machine
                         switch( state.inlineOpnds[ 0 ] )
                         {
                             case Instruction.TR_PR_INT :
-                                messenger.println( "" + pop() ) ;
+                                messenger.print( "" + pop() ) ;
                                 break ;
                             case Instruction.TR_PR_CHAR :
                                 try
