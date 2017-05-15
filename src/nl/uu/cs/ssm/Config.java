@@ -36,9 +36,9 @@ public class Config
     public static final int maxMemory 					= 2500000; // 10 MB
 	public static final int stackSize 					= 250000;  // 1 MB
     
-    public static final String version()                { return "2.2.0" ; }
+    public static final String version()                { return "2.2.1" ; }
     
-    public static final String versionDate()            { return "June 16, 2015" ; }
+    public static final String versionDate()            { return "May 15, 2017" ; }
     
     public static final String author()                 { return "Atze Dijkstra, Utrecht University" ; }
     
