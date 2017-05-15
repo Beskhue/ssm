@@ -15,32 +15,34 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.EventListener;
+import nl.uu.cs.ssm.Config;
 
 public class MachineState extends Model
 {
-    protected int           stackBottom     ;
-    protected int           stackGrowthDir  ;
+    protected int           stackBottom       ;
+    protected int           stackGrowthDir    ;
+    protected int           startAddressOfHeap;
+
+    private final int stackSize;
     
-    private final int startAddressOfHeap;
-    
-    protected int           code            ;
-    protected int           instrPC         ;
-    protected Instruction   instr           ;
-    protected int           nInlineOpnds    ;
-    protected int           inlineOpnds[]   ;
-    protected Memory		memory			;
-    protected Registers		registers		;
-    protected MemoryUser    memoryUser      ;
+    protected int           code              ;
+    protected int           instrPC           ;
+    protected Instruction   instr             ;
+    protected int           nInlineOpnds      ;
+    protected int           inlineOpnds[]     ;
+    protected Memory		memory			  ;
+    protected Registers		registers		  ;
+    protected MemoryUser    memoryUser        ;
     protected ArrayList<Closeable> filePtrs;
     
-    public    boolean       isHalted        ;
+    public    boolean       isHalted          ;
     
-    public MachineState( int initMemCapacity, int startAddressOfHeap, Messenger m )
+    public MachineState(Messenger m )
     {
-    	memory = new Memory( initMemCapacity, m ) ;
+    	memory = new Memory( Config.maxMemory, m ) ;
     	registers = new Registers( memory, m ) ;
     	stackGrowthDir = 1 ;
-    	this.startAddressOfHeap = startAddressOfHeap;
+    	this.stackSize = Config.stackSize;
     	filePtrs = new ArrayList<Closeable>();
     	reset() ;
     }
@@ -77,7 +79,8 @@ public class MachineState extends Model
         stackBottom = memory.getUsedForCode() + 16 ;
         registers.setSP( stackBottom - stackGrowthDir ) ;
         registers.setMP( registers.getSP() ) ;
-        registers.setHP(startAddressOfHeap);
+        this.startAddressOfHeap = registers.getSP() + stackSize;
+        registers.setHP( this.startAddressOfHeap );
         isHalted = false ;
         try
         {
@@ -120,10 +123,13 @@ public class MachineState extends Model
     {
     	return stackBottom ;
     }
-    
+
     public int getStartAddressOfHeap() {
-    	
-    	return startAddressOfHeap;
+        return startAddressOfHeap;
+    }
+
+    public int getStackSize() {
+        return stackSize;
     }
         
     public Registers getRegisters()

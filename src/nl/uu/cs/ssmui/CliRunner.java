@@ -11,7 +11,7 @@ public class CliRunner implements Messenger {
     private static final long STEPS_INFINITE = -1;
 
     private long steps;
-    private MachineState machineState = new MachineState(5000, 2000, this);
+    private MachineState machineState = new MachineState(this);
     private Machine machine = new Machine(machineState, this);
     private StepManager stepManager = new StepManager(machine, false);
     private CodeTableModel codeTableModel= new CodeTableModel(null, machineState);

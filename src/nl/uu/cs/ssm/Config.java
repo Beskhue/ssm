@@ -13,6 +13,7 @@
 package nl.uu.cs.ssm ;
 
 import java.awt.event.KeyEvent;
+import java.lang.Math;
 
 public class Config
 {
@@ -32,8 +33,8 @@ public class Config
 	
 	public static final String extensionSSM				= "ssm" ;
 	
-    public static final int allowedAutomaticMemoryIncrease
-    													= 100 ;
+    public static final int maxMemory 					= 2500000; // 10 MB
+	public static final int stackSize 					= 250000;  // 1 MB
     
     public static final String version()                { return "2.2.0" ; }
     
