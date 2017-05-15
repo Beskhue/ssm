@@ -105,7 +105,7 @@ public class CliRunner implements Messenger {
 
     @Override
     public void println(String s) {
-        System.out.println(s);
+        System.out.println(System.lineSeparator() + s);
     }
 
     @Override

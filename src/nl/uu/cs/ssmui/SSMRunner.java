@@ -652,7 +652,7 @@ public class SSMRunner extends JFrame
 
 	public void println( String s )
 	{
-	    outputTextArea.append(s + System.lineSeparator()) ;
+	    outputTextArea.append(System.lineSeparator() + s + System.lineSeparator()) ;
 	}
 
 	public void print( String s )
